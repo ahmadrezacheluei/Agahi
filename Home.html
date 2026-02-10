@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سایت آگهی - صفحه اصلی</title>
+
+  <!-- فونت آیکون -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- فایل CSS هدر -->
+  <link rel="stylesheet" href="Css/Header.css">
+
+  <style>
+    footer {
+      position: relative;
+      background: #3586ff;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 200px;
+    }
+
+    footer .wave {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url("img/wave.png");
+      background-size: 1000px 100px;
+    }
+
+    .wave#wave1 {
+      z-index: 1000;
+      opacity: 1;
+      bottom: 0;
+      animation: animateWaves 4s linear infinite;
+    }
+
+    .wave#wave2 {
+      z-index: 999;
+      opacity: 0.5;
+      bottom: 10px;
+      animation: animate 4s linear infinite !important;
+    }
+
+    .wave#wave3 {
+      z-index: 1000;
+      opacity: 0.2;
+      bottom: 15px;
+      animation: animateWaves 3s linear infinite;
+    }
+
+    .wave#wave4 {
+      z-index: 999;
+      opacity: 0.7;
+      bottom: 20px;
+      animation: animate 3s linear infinite;
+    }
+
+    @keyframes animateWaves {
+      0% {
+        background-position-x: 1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+
+    @keyframes animate {
+      0% {
+        background-position-x: -1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+
+    body {
+      font-family: tahoma, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      direction: rtl;
+    }
+
+    /* استایل کارت‌های آگهی */
+    .ads-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+      min-height: 70vh;
+    }
+
+    .ad-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .ad-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .ad-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .ad-card .info {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ad-card .info h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .ad-card .info p {
+      margin: 5px 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .ad-card .info p:last-child {
+      margin-top: auto;
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* جعبه جستجو */
+    .search-box {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .search-box input {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Demo Content */
+    .demo-content {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-content h2 {
+      color: #3586ff;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f1f1f1;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: #3586ff;
+    }
+
+    .stat-text {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    /* واکنش‌گرا کردن برای موبایل و تبلت */
+    @media (max-width: 1024px) {
+      .ads-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ads-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .ad-card img {
+        height: 180px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="main-header">
+    <!-- Top Bar -->
+    <div class="header-top">
+      <div class="header-promo">
+        <span><i class="fas fa-bolt"></i> بیش از ۱۰۰۰ آگهی جدید روزانه</span>
+        <span><i class="fas fa-shield-alt"></i> خرید امن با گارانتی بازگشت وجه</span>
+      </div>
+      <div class="user-actions">
+        <a href="#"><i class="far fa-question-circle"></i> راهنما</a>
+        <a href="#"><i class="fas fa-headset"></i> پشتیبانی</a>
+        <!-- تغییر: لینک به صفحه Login.html -->
+        <a href="Login.html"><i class="far fa-user"></i> ورود / ثبت‌نام</a>
+      </div>
+    </div>
+    
+    <!-- Main Header -->
+    <div class="header-main">
+      <!-- Logo -->
+      <!-- تغییر: لینک لوگو به صفحه Home.html -->
+      <a href="Home.html" class="logo-container" style="text-decoration: none; color: inherit;">
+        <div class="logo-container">
+          <div class="logo">DW</div>
+          <div class="logo-text">
+            <h1 class="site-title">دِوار</h1>
+            <span class="site-slogan">بازار آنلاین خرید و فروش کالا</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Search Box -->
+      <div class="search-container">
+        <div class="search-box">
+          <select class="search-category">
+            <option>همه دسته‌بندی‌ها</option>
+            <option>املاک</option>
+            <option>خودرو</option>
+            <option>موبایل</option>
+            <option>لوازم خانگی</option>
+            <option>خدمات</option>
+          </select>
+          <input type="text" class="search-input" placeholder="جستجو در میلیون‌ها آگهی...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- تغییر: لینک دکمه ثبت آگهی به صفحه ثبت آگهی -->
+        <a href="SabtAgahi.html" class="post-ad-btn">
+          <i class="fas fa-plus-circle"></i>
+          <span>ثبت آگهی رایگان</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Navigation -->
+    <!-- تغییر: همه لینک‌های منو به صفحه Dastebandi.html -->
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li><a href="Dastebandi.html"><i class="fas fa-home"></i> صفحه اصلی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-building"></i> املاک <span class="badge">جدید</span></a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-car"></i> خودرو</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-mobile-alt"></i> موبایل و تبلت</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-laptop"></i> لپ‌تاپ و کامپیوتر</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tv"></i> لوازم خانگی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-briefcase"></i> خدمات و استخدام</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tshirt"></i> مد و پوشاک</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-dumbbell"></i> ورزش و سرگرمی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-ellipsis-h"></i> بیشتر</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Demo Content -->
+  <div class="demo-content">
+    <h2>سایت دیوار - هر آنچه که میخواستی</h2>
+    <ul style="margin: 15px 0 15px 20px;">
+      <li>یه سایت برای خرید و فروش چیزای دست دوم و نو. می‌تونی گوشی قدیمیتو بفروشی، ماشین بخری، خونه اجاره کنی یا حتی یه کار پیدا کنی! رایگانه و کار با سایت خیلی راحته</li>
+    </ul>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">۵۰,۰۰۰+</div>
+        <div class="stat-text">آگهی فعال</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۲۰,۰۰۰+</div>
+        <div class="stat-text">کاربر روزانه</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۹۵٪</div>
+        <div class="stat-text">رضایت‌مندی</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۲۴/۷</div>
+        <div class="stat-text">پشتیبانی</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- تغییر: تمام کارت‌های آگهی به صفحه JoziatAgahi.html لینک شده‌اند -->
+  <section class="ads-grid">
+    <a href="JoziatAgahi.html" class="ad-card">
+      <img src="Img/Mahsol/1.jpg" alt="آگهی">
+      <div class="info">
+        <h3>آپارتمان ۸۵ متری شمالی در سعادت‌آباد</h3>
+        <p>قیمت: ۴۵ میلیارد تومان</p>
+        <p>۲ خوابه، آسانسور، پارکینگ، طبقه ۴</p>
+        <p>تهران، سعادت‌آباد</p>
+      </div>
+    </a>
+    
+    <a href="JoziatAgahi.html" class="ad-card">
+      <img src="Img/Mahsol/2.jpg" alt="آگهی">
+      <div class="info">
+        <h3>پژو ۲۰۶ تیپ ۶ مدل ۱۴۰۰</h3>
+        <p>قیمت: ۱ میلیارد و ۲۰۰ میلیون تومان</p>
+        <p>رنگ سفید، کم کارکرد (۲۵ هزار کیلومتر)، فول آپشن</p>
+        <p>اصفهان</p>
+      </div>
+    </a>
+    
+    <a href="JoziatAgahi.html" class="ad-card">
+      <img src="Img/Mahsol/3.jpg" alt="آگهی">
+      <div class="info">
+        <h3>گوشی سامسونگ گلکسی A54 دو سیم‌کارته</h3>
+        <p>قیمت: ۱۶ میلیون تومان</p>
+        <p>گارانتی ۱۸ ماهه همراه، رنگ مشکی، کارتن‌کامل</p>
+        <p>مشهد</p>
+      </div>
+    </a>
+    
+    <a href="JoziatAgahi.html" class="ad-card">
+      <img src="Img/Mahsol/4.jpg" alt="آگهی">
+      <div class="info">
+        <h3>آیفون ۱۳ پرو مکس ۲۵۶ گیگ</h3>
+        <p>قیمت: ۷۵ میلیون تومان</p>
+        <p>باتری ۱۰۰٪، سالم بدون خط و خش، همراه کارت گارانتی</p>
+        <p>تهران</p>
+      </div>
+    </a>
+    
+    <a href="JoziatAgahi.html" class="ad-card">
+      <img src="Img/Mahsol/5.jpg" alt="آگهی">
+      <div class="info">
+        <h3>پراید ۱۳۱ SE مدل ۱۳۹۶</h3>
+        <p>قیمت: ۹۰۰ میلیون تومان</p>
+        <p>رنگ مشکی، وضعیت فنی عالی، لاستیک نو</p>
+        <p>کرج</p>
+      </div>
+    </a>
+    
+    <a href="JoziatAgahi.html" class="ad-card">
+      <img src="Img/Mahsol/6.jpg" alt="آگهی">
+      <div class="info">
+        <h3>لپ‌تاپ ایسوس ویووبوک ۱۵ اینچ</h3>
+        <p>قیمت: ۴۲ میلیون تومان</p>
+        <p>پردازنده Core i7، رم ۱۶ گیگ، SSD 512 گیگ، کارکرد ۶ ماه</p>
+        <p>تبریز</p>
+      </div>
+    </a>
+  </section>
+  
+  <footer>
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+  </footer>
+
+  <script>
+    // JavaScript برای افکت‌های تعاملی
+    document.addEventListener('DOMContentLoaded', function() {
+      // افکت اسکرول برای هدر
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('.main-header');
+        if (window.scrollY > 50) {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+        } else {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        }
+      });
+      
+      // افکت hover برای دکمه‌ها
+      const actionButtons = document.querySelectorAll('.action-btn, .post-ad-btn');
+      actionButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-2px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      
+      // شبیه‌سازی جستجو
+      const searchBtn = document.querySelector('.search-btn');
+      const searchInput = document.querySelector('.search-input');
+      
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim() !== '') {
+          alert(`در حال جستجو برای: "${searchInput.value}"`);
+        }
+      });
+      
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          if (this.value.trim() !== '') {
+            alert(`در حال جستجو برای: "${this.value}"`);
+          }
+        }
+      });
+      
+      // حذف alert برای ثبت آگهی چون لینک مستقیم گذاشتیم
+    });
+  </script>
+
+</body>
+</html>
