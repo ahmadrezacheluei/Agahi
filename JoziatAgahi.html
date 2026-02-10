@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جزئیات آگهی</title>
+  
+  <!-- فونت آیکون -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- فایل CSS هدر -->
+  <link rel="stylesheet" href="Css/Header.css">
+  
+  <style>
+    body {
+      font-family: tahoma, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .ad-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .ad-header img {
+      flex: 1;
+      max-width: 400px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .ad-info {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .ad-info h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+    
+    .ad-info p {
+      margin: 0;
+      color: #555;
+      font-size: 15px;
+    }
+    
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #358ae5;
+      background: #f0f8ff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    
+    .contact-box {
+      margin-top: 10px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    
+    .contact-box p {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+    
+    .contact-box strong {
+      color: #333;
+    }
+    
+    .actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .actions button {
+      flex: 1;
+      min-width: 140px;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .actions button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .save-btn {
+      background: linear-gradient(135deg, #ff6b35, #ff5722);
+    }
+    
+    .share-btn {
+      background: linear-gradient(135deg, #3586ff, #1a73e8);
+    }
+    
+    .report-btn {
+      background: linear-gradient(135deg, #ff4757, #ff3838);
+    }
+    
+    .call-btn {
+      background: linear-gradient(135deg, #2ed573, #1dd1a1);
+    }
+    
+    .description {
+      margin-top: 30px;
+      line-height: 1.8;
+      color: #444;
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+      border-right: 4px solid #358ae5;
+    }
+    
+    .description h3 {
+      color: #333;
+      margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
+    
+    .ad-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .detail-item i {
+      color: #358ae5;
+      font-size: 18px;
+    }
+    
+    footer {
+      position: relative;
+      background: #3586ff;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 200px;
+    }
+
+    footer .wave {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url("img/wave.png");
+      background-size: 1000px 100px;
+    }
+
+    .wave#wave1 {
+      z-index: 1000;
+      opacity: 1;
+      bottom: 0;
+      animation: animateWaves 4s linear infinite;
+    }
+
+    .wave#wave2 {
+      z-index: 999;
+      opacity: 0.5;
+      bottom: 10px;
+      animation: animate 4s linear infinite !important;
+    }
+
+    .wave#wave3 {
+      z-index: 1000;
+      opacity: 0.2;
+      bottom: 15px;
+      animation: animateWaves 3s linear infinite;
+    }
+
+    .wave#wave4 {
+      z-index: 999;
+      opacity: 0.7;
+      bottom: 20px;
+      animation: animate 3s linear infinite;
+    }
+
+    @keyframes animateWaves {
+      0% {
+        background-position-x: 1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+    
+    @keyframes animate {
+      0% {
+        background-position-x: -1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+
+    /* ریسپانسیو */
+    @media (max-width: 768px) {
+      .ad-header {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .ad-header img {
+        max-width: 100%;
+      }
+      
+      .actions button {
+        min-width: 100%;
+      }
+      
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <!-- Top Bar -->
+    <div class="header-top">
+      <div class="header-promo">
+        <span><i class="fas fa-bolt"></i> بیش از ۱۰۰۰ آگهی جدید روزانه</span>
+        <span><i class="fas fa-shield-alt"></i> خرید امن با گارانتی بازگشت وجه</span>
+      </div>
+      <div class="user-actions">
+        <a href="#"><i class="far fa-question-circle"></i> راهنما</a>
+        <a href="#"><i class="fas fa-headset"></i> پشتیبانی</a>
+        <!-- تغییر: لینک به صفحه Login.html -->
+        <a href="Login.html"><i class="far fa-user"></i> ورود / ثبت‌نام</a>
+      </div>
+    </div>
+    
+    <!-- Main Header -->
+    <div class="header-main">
+      <!-- Logo -->
+      <!-- تغییر: لینک لوگو به صفحه Home.html -->
+      <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+        <div class="logo-container">
+          <div class="logo">DW</div>
+          <div class="logo-text">
+            <h1 class="site-title">دِوار</h1>
+            <span class="site-slogan">بازار آنلاین خرید و فروش کالا</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Search Box -->
+      <div class="search-container">
+        <div class="search-box">
+          <select class="search-category">
+            <option>همه دسته‌بندی‌ها</option>
+            <option>املاک</option>
+            <option>خودرو</option>
+            <option>موبایل</option>
+            <option>لوازم خانگی</option>
+            <option>خدمات</option>
+          </select>
+          <input type="text" class="search-input" placeholder="جستجو در میلیون‌ها آگهی...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- تغییر: لینک دکمه ثبت آگهی به صفحه ثبت آگهی -->
+        <a href="SabtAgahi.html" class="post-ad-btn">
+          <i class="fas fa-plus-circle"></i>
+          <span>ثبت آگهی رایگان</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Navigation -->
+    <!-- تغییر: همه لینک‌های منو به صفحه Dastebandi.html -->
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li><a href="Dastebandi.html"><i class="fas fa-home"></i> صفحه اصلی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-building"></i> املاک <span class="badge">جدید</span></a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-car"></i> خودرو</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-mobile-alt"></i> موبایل و تبلت</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-laptop"></i> لپ‌تاپ و کامپیوتر</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tv"></i> لوازم خانگی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-briefcase"></i> خدمات و استخدام</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tshirt"></i> مد و پوشاک</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-dumbbell"></i> ورزش و سرگرمی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-ellipsis-h"></i> بیشتر</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="ad-header">
+      <img src="Img/Mahsol/1.jpg" alt="تصویر آگهی">
+      <div class="ad-info">
+        <h2>فروش آپارتمان 80 متری در سعادت‌آباد</h2>
+        <p class="price">۲,۵۰۰,۰۰۰,۰۰۰ تومان</p>
+        
+        <div class="ad-details">
+          <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span><strong>موقعیت:</strong> تهران، سعادت‌آباد</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-bed"></i>
+            <span><strong>اتاق خواب:</strong> ۲ خوابه</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-building"></i>
+            <span><strong>طبقه:</strong> سوم</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-car"></i>
+            <span><strong>پارکینگ:</strong> دارد</span>
+          </div>
+        </div>
+        
+        <div class="contact-box">
+          <p><strong><i class="fas fa-phone"></i> شماره تماس:</strong> ۰۹۱۲-۱۲۳۴۵۶۷</p>
+          <p><strong><i class="fas fa-envelope"></i> ایمیل:</strong> example@email.com</p>
+          <p><strong><i class="fas fa-user"></i> آگهی‌دهنده:</strong> علی محمدی</p>
+          <p><strong><i class="far fa-clock"></i> تاریخ ثبت:</strong> ۲ روز پیش</p>
+        </div>
+        
+        <div class="actions">
+          <button class="save-btn" id="saveBtn">
+            <i class="far fa-heart"></i> ذخیره آگهی
+          </button>
+          <button class="share-btn" id="shareBtn">
+            <i class="fas fa-share-alt"></i> اشتراک‌گذاری
+          </button>
+          <button class="call-btn" id="callBtn">
+            <i class="fas fa-phone"></i> تماس فوری
+          </button>
+          <button class="report-btn" id="reportBtn">
+            <i class="fas fa-flag"></i> گزارش آگهی
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">
+      <h3>توضیحات کامل آگهی:</h3>
+      <p>
+        آپارتمان ۸۰ متری واقع در سعادت‌آباد، یک واحد شمالی با نورگیری عالی. این واحد دارای ۲ اتاق خواب مجزا، پذیرایی بزرگ، آشپزخانه مدرن، یک سرویس بهداشتی و یک حمام می‌باشد.
+      </p>
+      <p>
+        <strong>ویژگی‌های ملک:</strong>
+        <br>• طبقه سوم از ۵ طبقه
+        <br>• دارای آسانسور جدید
+        <br>• پارکینگ اختصاصی
+        <br>• انباری مجزا
+        <br>• سیستم گرمایشی پکیج
+        <br>• کابینت MDF و کف پارکت
+      </p>
+      <p>
+        <strong>امکانات ساختمان:</strong>
+        <br>• نگهبانی ۲۴ ساعته
+        <br>• دوربین‌های مداربسته
+        <br>• آنتن مرکزی
+        <br>• اینترنت پرسرعت
+        <br>• نزدیک به مراکز خرید، مدرسه و ایستگاه مترو
+      </p>
+      <p>
+        ملک کاملاً آماده سکونت می‌باشد و نیاز به هیچ گونه بازسازی ندارد. جهت بازدید با شماره تماس فوق هماهنگ فرمایید.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // دکمه ذخیره آگهی
+      document.getElementById('saveBtn').addEventListener('click', function() {
+        alert('✅ آگهی با موفقیت به علاقه‌مندی‌های شما اضافه شد!\nمی‌توانید از صفحه پروفایل خود آن را مشاهده کنید.');
+      });
+      
+      // دکمه اشتراک‌گذاری
+      document.getElementById('shareBtn').addEventListener('click', function() {
+        alert('🔗 لینک این آگهی کپی شد!\nمی‌توانید آن را با دوستان خود به اشتراک بگذارید.\n\nلینک: https://divar.ir/ad/123456');
+      });
+      
+      // دکمه تماس فوری
+      document.getElementById('callBtn').addEventListener('click', function() {
+        alert('📞 در حال برقراری تماس با آگهی‌دهنده...\n\nشماره: ۰۹۱۲۱۲۳۴۵۶۷\n\nلطفاً منتظر بمانید یا از تلفن خود شماره را شماره‌گیری کنید.');
+      });
+      
+      // دکمه گزارش آگهی
+      document.getElementById('reportBtn').addEventListener('click', function() {
+        const reason = prompt('لطفاً دلیل گزارش این آگهی را انتخاب کنید:\n\n1. اطلاعات نادرست\n2. قیمت غیرواقعی\n3. عکس نامربوط\n4. آگهی تکراری\n5. سایر موارد\n\nعدد مورد نظر را وارد کنید:');
+        
+        if (reason) {
+          const reasons = {
+            '1': 'اطلاعات نادرست',
+            '2': 'قیمت غیرواقعی',
+            '3': 'عکس نامربوط',
+            '4': 'آگهی تکراری',
+            '5': 'سایر موارد'
+          };
+          
+          if (reasons[reason]) {
+            alert('🚩 گزارش شما با موفقیت ثبت شد!\n\nموضوع: ' + reasons[reason] + '\n\nتیم پشتیبانی در اسرع وقت آگهی را بررسی خواهد کرد.');
+          } else {
+            alert('⚠️ لطفاً عدد صحیح بین ۱ تا ۵ وارد کنید.');
+          }
+        }
+      });
+      
+      // افکت اسکرول برای هدر (همانند صفحه اصلی)
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('.main-header');
+        if (window.scrollY > 50) {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+        } else {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        }
+      });
+      
+      // افکت hover برای دکمه‌های هدر
+      const postAdBtn = document.querySelector('.post-ad-btn');
+      postAdBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      postAdBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+      
+      // شبیه‌سازی جستجو
+      const searchBtn = document.querySelector('.search-btn');
+      const searchInput = document.querySelector('.search-input');
+      
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim() !== '') {
+          alert(`🔍 در حال جستجو برای: "${searchInput.value}"\n\nنتایج جستجو در صفحه جدید نمایش داده خواهد شد.`);
+        } else {
+          alert('⚠️ لطفاً متن مورد نظر برای جستجو را وارد کنید.');
+        }
+      });
+      
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          if (this.value.trim() !== '') {
+            alert(`🔍 در حال جستجو برای: "${this.value}"\n\nنتایج جستجو در صفحه جدید نمایش داده خواهد شد.`);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

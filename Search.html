@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نتایج جستجو</title>
+
+  <!-- فونت آیکون -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- فایل CSS هدر -->
+  <link rel="stylesheet" href="Css/Header.css">
+
+  <style>
+    body {
+      font-family: tahoma, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .search-bar input {
+      flex: 2;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    .search-bar button {
+      flex: 1;
+      min-width: 100px;
+      background: linear-gradient(135deg, #04ad12, #038a0e);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    
+    .search-bar button:hover {
+      background: linear-gradient(135deg, #038a0e, #02690b);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(4, 173, 18, 0.3);
+    }
+    
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .filters select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      min-width: 180px;
+    }
+    
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .ad-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .ad-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transform: translateY(-5px);
+    }
+    
+    .ad-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .ad-card .info {
+      padding: 15px;
+    }
+    
+    .ad-card .info h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.4;
+    }
+    
+    .ad-card .info p {
+      margin: 8px 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .ad-card .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #358ae5;
+      margin: 10px 0;
+    }
+    
+    .ad-card .location {
+      color: #888;
+      font-size: 13px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .results-count {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+      background: #f0f8ff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border-right: 4px solid #358ae5;
+    }
+    
+    .results-count strong {
+      color: #358ae5;
+    }
+    
+    footer {
+      position: relative;
+      background: #3586ff;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 200px;
+    }
+
+    footer .wave {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url("img/wave.png");
+      background-size: 1000px 100px;
+    }
+
+    .wave#wave1 {
+      z-index: 1000;
+      opacity: 1;
+      bottom: 0;
+      animation: animateWaves 4s linear infinite;
+    }
+
+    .wave#wave2 {
+      z-index: 999;
+      opacity: 0.5;
+      bottom: 10px;
+      animation: animate 4s linear infinite !important;
+    }
+
+    .wave#wave3 {
+      z-index: 1000;
+      opacity: 0.2;
+      bottom: 15px;
+      animation: animateWaves 3s linear infinite;
+    }
+
+    .wave#wave4 {
+      z-index: 999;
+      opacity: 0.7;
+      bottom: 20px;
+      animation: animate 3s linear infinite;
+    }
+
+    @keyframes animateWaves {
+      0% {
+        background-position-x: 1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+    
+    @keyframes animate {
+      0% {
+        background-position-x: -1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+
+    /* ریسپانسیو */
+    @media (max-width: 768px) {
+      .search-bar {
+        flex-direction: column;
+      }
+      
+      .filters {
+        flex-direction: column;
+      }
+      
+      .filters select {
+        min-width: 100%;
+      }
+      
+      .results-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <!-- Top Bar -->
+    <div class="header-top">
+      <div class="header-promo">
+        <span><i class="fas fa-bolt"></i> بیش از ۱۰۰۰ آگهی جدید روزانه</span>
+        <span><i class="fas fa-shield-alt"></i> خرید امن با گارانتی بازگشت وجه</span>
+      </div>
+      <div class="user-actions">
+        <a href="#"><i class="far fa-question-circle"></i> راهنما</a>
+        <a href="#"><i class="fas fa-headset"></i> پشتیبانی</a>
+        <!-- تغییر: لینک به صفحه Login.html -->
+        <a href="Login.html"><i class="far fa-user"></i> ورود / ثبت‌نام</a>
+      </div>
+    </div>
+    
+    <!-- Main Header -->
+    <div class="header-main">
+      <!-- Logo -->
+      <!-- تغییر: لینک لوگو به صفحه Home.html -->
+      <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+        <div class="logo-container">
+          <div class="logo">DW</div>
+          <div class="logo-text">
+            <h1 class="site-title">دِوار</h1>
+            <span class="site-slogan">بازار آنلاین خرید و فروش کالا</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Search Box -->
+      <div class="search-container">
+        <div class="search-box">
+          <select class="search-category">
+            <option>همه دسته‌بندی‌ها</option>
+            <option>املاک</option>
+            <option>خودرو</option>
+            <option>موبایل</option>
+            <option>لوازم خانگی</option>
+            <option>خدمات</option>
+          </select>
+          <input type="text" class="search-input" placeholder="جستجو در میلیون‌ها آگهی...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- تغییر: لینک دکمه ثبت آگهی به صفحه ثبت آگهی -->
+        <a href="SabtAgahi.html" class="post-ad-btn">
+          <i class="fas fa-plus-circle"></i>
+          <span>ثبت آگهی رایگان</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Navigation -->
+    <!-- تغییر: همه لینک‌های منو به صفحه Dastebandi.html -->
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li><a href="Dastebandi.html"><i class="fas fa-home"></i> صفحه اصلی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-building"></i> املاک <span class="badge">جدید</span></a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-car"></i> خودرو</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-mobile-alt"></i> موبایل و تبلت</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-laptop"></i> لپ‌تاپ و کامپیوتر</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tv"></i> لوازم خانگی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-briefcase"></i> خدمات و استخدام</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tshirt"></i> مد و پوشاک</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-dumbbell"></i> ورزش و سرگرمی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-ellipsis-h"></i> بیشتر</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="results-count">
+      <i class="fas fa-search"></i> نتایج جستجو برای <strong>"آپارتمان"</strong> | <strong>۳</strong> آگهی پیدا شد
+    </div>
+    
+    <div class="search-bar">
+      <input type="text" placeholder="جستجو در آگهی‌ها..." value="آپارتمان" id="mainSearchInput">
+      <button id="mainSearchBtn">جستجو</button>
+    </div>
+
+    <div class="filters">
+      <select id="sortFilter">
+        <option>مرتب‌سازی: جدیدترین</option>
+        <option>مرتب‌سازی: ارزان‌ترین</option>
+        <option>مرتب‌سازی: گران‌ترین</option>
+        <option>مرتب‌سازی: محبوب‌ترین</option>
+      </select>
+      <select id="categoryFilter">
+        <option>دسته‌بندی: همه</option>
+        <option>املاک</option>
+        <option>خودرو</option>
+        <option>موبایل</option>
+        <option>لوازم خانگی</option>
+      </select>
+      <select id="cityFilter">
+        <option>شهر: همه</option>
+        <option>تهران</option>
+        <option>اصفهان</option>
+        <option>مشهد</option>
+        <option>کرج</option>
+        <option>تبریز</option>
+      </select>
+      <select id="priceFilter">
+        <option>محدوده قیمت: همه</option>
+        <option>کمتر از ۱۰۰ میلیون</option>
+        <option>۱۰۰ تا ۵۰۰ میلیون</option>
+        <option>۵۰۰ میلیون تا ۱ میلیارد</option>
+        <option>بیشتر از ۱ میلیارد</option>
+      </select>
+    </div>
+
+    <section class="results-grid">
+      <!-- تغییر: لینک آگهی‌ها به صفحه JoziatAgahi.html -->
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/4.jpg" alt="آیفون">
+        <div class="info">
+          <h3>آیفون ۱۳ پرو مکس ۲۵۶ گیگ</h3>
+          <p class="price">۷۵ میلیون تومان</p>
+          <p>باتری ۱۰۰٪، سالم بدون خط و خش، همراه کارت گارانتی</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> تهران</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/5.jpg" alt="پراید">
+        <div class="info">
+          <h3>پراید ۱۳۱ SE مدل ۱۳۹۶</h3>
+          <p class="price">۹۰۰ میلیون تومان</p>
+          <p>رنگ مشکی، وضعیت فنی عالی، لاستیک نو</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> کرج</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/6.jpg" alt="لپ‌تاپ">
+        <div class="info">
+          <h3>لپ‌تاپ ایسوس ویووبوک ۱۵ اینچ</h3>
+          <p class="price">۴۲ میلیون تومان</p>
+          <p>پردازنده Core i7، رم ۱۶ گیگ، SSD 512 گیگ، کارکرد ۶ ماه</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> تبریز</p>
+        </div>
+      </a>
+      
+      <!-- آگهی‌های اضافی برای نمایش بهتر -->
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>آپارتمان ۸۵ متری سعادت‌آباد</h3>
+          <p class="price">۴۵ میلیارد تومان</p>
+          <p>۲ خوابه، آسانسور، پارکینگ، طبقه چهارم</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> تهران، سعادت‌آباد</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/2.jpg" alt="پژو">
+        <div class="info">
+          <h3>پژو ۲۰۶ تیپ ۶ مدل ۱۴۰۰</h3>
+          <p class="price">۱.۲ میلیارد تومان</p>
+          <p>رنگ سفید، کم کارکرد، فول آپشن</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> اصفهان</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/3.jpg" alt="سامسونگ">
+        <div class="info">
+          <h3>گوشی سامسونگ گلکسی A54</h3>
+          <p class="price">۱۶ میلیون تومان</p>
+          <p>گارانتی ۱۸ ماهه، رنگ مشکی، کارتن کامل</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> مشهد</p>
+        </div>
+      </a>
+    </section>
+  </div>
+
+  <footer>
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // جستجوی اصلی
+      const mainSearchBtn = document.getElementById('mainSearchBtn');
+      const mainSearchInput = document.getElementById('mainSearchInput');
+      
+      mainSearchBtn.addEventListener('click', function() {
+        performSearch();
+      });
+      
+      mainSearchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          performSearch();
+        }
+      });
+      
+      function performSearch() {
+        const searchTerm = mainSearchInput.value.trim();
+        if (searchTerm) {
+          alert(`🔍 جستجو برای: "${searchTerm}"\n\nدر حال فیلتر کردن ${document.querySelectorAll('.ad-card').length} آگهی...`);
+          
+          // نمایش تعداد نتایج به‌روز شده
+          const resultsCount = document.querySelector('.results-count strong');
+          const randomCount = Math.floor(Math.random() * 20) + 5;
+          resultsCount.textContent = randomCount;
+        } else {
+          alert('⚠️ لطفاً متن مورد نظر برای جستجو را وارد کنید.');
+          mainSearchInput.focus();
+        }
+      }
+      
+      // فیلترها
+      const filters = ['sortFilter', 'categoryFilter', 'cityFilter', 'priceFilter'];
+      filters.forEach(filterId => {
+        document.getElementById(filterId).addEventListener('change', function() {
+          alert(`✅ فیلتر "${this.selectedOptions[0].text}" اعمال شد.\n\nنتایج بر اساس انتخاب شما مرتب‌سازی می‌شوند.`);
+        });
+      });
+      
+      // افکت اسکرول برای هدر
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('.main-header');
+        if (window.scrollY > 50) {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+        } else {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        }
+      });
+      
+      // افکت hover برای دکمه‌ها
+      const postAdBtn = document.querySelector('.post-ad-btn');
+      postAdBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      postAdBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+      
+      // شبیه‌سازی جستجو در هدر
+      const searchBtn = document.querySelector('.search-btn');
+      const searchInput = document.querySelector('.search-input');
+      
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim() !== '') {
+          alert(`🔍 جستجو برای: "${searchInput.value}"\n\nدر حال هدایت به صفحه نتایج...`);
+          // در حالت واقعی باید به صفحه نتایج با پارامتر جستجو منتقل شود
+          mainSearchInput.value = searchInput.value;
+        } else {
+          alert('⚠️ لطفاً متن مورد نظر برای جستجو را وارد کنید.');
+        }
+      });
+      
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          if (this.value.trim() !== '') {
+            alert(`🔍 جستجو برای: "${this.value}"\n\nدر حال هدایت به صفحه نتایج...`);
+            mainSearchInput.value = this.value;
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

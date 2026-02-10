@@ -176,21 +176,28 @@
       border-bottom: 2px solid #f1f1f1;
     }
 
+    /* آمار - ریسپانسیو اصلاح شده */
     .stats {
       display: flex;
       justify-content: space-around;
       margin: 40px 0;
       text-align: center;
+      flex-wrap: wrap;
     }
 
     .stat-item {
-      padding: 20px;
+      padding: 15px;
+      flex: 1;
+      min-width: 150px;
+      margin: 10px;
     }
 
     .stat-number {
       font-size: 36px;
       font-weight: 700;
       color: #3586ff;
+      display: block;
+      margin-bottom: 5px;
     }
 
     .stat-text {
@@ -207,13 +214,225 @@
     }
 
     @media (max-width: 768px) {
+      /* آمار در موبایل */
+      .stats {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+        gap: 15px;
+      }
+      
+      .stat-item {
+        width: 100%;
+        max-width: 300px;
+        min-width: auto;
+        margin: 5px 0;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      
+      .stat-number {
+        font-size: 28px;
+      }
+      
+      .stat-text {
+        font-size: 13px;
+      }
+      
+      /* کارت‌های آگهی */
       .ads-grid {
         grid-template-columns: 1fr;
         gap: 15px;
+        padding: 15px;
       }
       
       .ad-card img {
         height: 180px;
+      }
+      
+      /* Demo Content */
+      .demo-content {
+        margin: 15px;
+        padding: 15px;
+      }
+      
+      .demo-content h2 {
+        font-size: 20px;
+        text-align: center;
+      }
+      
+      .demo-content ul {
+        margin: 15px 0;
+        padding-right: 10px;
+      }
+      
+      .demo-content li {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      
+      /* جستجو */
+/* سرچ باکس با افکت‌های پیشرفته */
+.search-box {
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.search-box input {
+  width: 80%;
+  max-width: 500px;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #3586ff;
+  box-shadow: 0 4px 15px rgba(53, 134, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.search-box input::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+/* ریسپانسیو پیشرفته */
+@media (max-width: 992px) {
+  .search-box input {
+    width: 85%;
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-box {
+    padding: 15px;
+    background: #f8f9fa;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  .search-box input {
+    width: 100%;
+    max-width: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    border-width: 1px;
+  }
+  
+  .search-box input:focus {
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-box {
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .search-box input {
+    padding: 15px 18px;
+    font-size: 16px;
+    border-radius: 15px;
+  }
+  
+  .search-box input::placeholder {
+    font-size: 15px;
+  }
+}
+
+/* برای موبایل‌های خیلی کوچک */
+@media (max-width: 360px) {
+  .search-box input {
+    padding: 13px 16px;
+    font-size: 15px;
+  }
+  
+  .search-box input::placeholder {
+    font-size: 14px;
+  }
+}
+
+/* بهبود لمسی برای موبایل */
+@media (max-width: 768px) {
+  .search-box input {
+    min-height: 50px; /* حداقل ارتفاع برای لمس راحت */
+  }
+}
+      
+      /* فوتر */
+      footer {
+        margin-top: 100px;
+      }
+      
+      footer .wave {
+        top: -80px;
+        height: 80px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* آمار در موبایل کوچک */
+      .stats {
+        gap: 12px;
+      }
+      
+      .stat-item {
+        max-width: 100%;
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .stat-number {
+        font-size: 24px;
+        margin-bottom: 0;
+        background: rgba(53, 134, 255, 0.1);
+        padding: 8px 12px;
+        border-radius: 6px;
+        min-width: 80px;
+        text-align: center;
+      }
+      
+      .stat-text {
+        text-align: right;
+        flex-grow: 1;
+        margin-right: 15px;
+        font-weight: 500;
+      }
+      
+      /* سایر تنظیمات موبایل کوچک */
+      .ad-card .info h3 {
+        font-size: 16px;
+      }
+      
+      .ad-card .info p {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .stat-number {
+        font-size: 22px;
+        min-width: 70px;
+        padding: 6px 10px;
+      }
+      
+      .stat-text {
+        font-size: 12px;
+        margin-right: 10px;
       }
     }
 
@@ -227,7 +446,7 @@
     <div class="header-top">
       <div class="header-promo">
         <span><i class="fas fa-bolt"></i> بیش از ۱۰۰۰ آگهی جدید روزانه</span>
-        <span><i class="fas fa-shield-alt"></i> خرید امن با گارانتی بازگشت وجه</span>
+        <span><i class="fas fa-shield-alt"></i> خرید امن با گارانتی بازگعت وجه</span>
       </div>
       <div class="user-actions">
         <a href="#"><i class="far fa-question-circle"></i> راهنما</a>
@@ -240,8 +459,8 @@
     <!-- Main Header -->
     <div class="header-main">
       <!-- Logo -->
-      <!-- تغییر: لینک لوگو به صفحه Home.html -->
-      <a href="Home.html" class="logo-container" style="text-decoration: none; color: inherit;">
+      <!-- تغییر: لینک لوگو به صفحه index.html -->
+      <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
         <div class="logo-container">
           <div class="logo">DW</div>
           <div class="logo-text">

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دسته‌بندی: املاک</title>
+  
+  <!-- فونت آیکون -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="Css/Header.css">
+  <style>
+    body {
+      font-family: tahoma, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    
+    .category-header {
+      background: linear-gradient(135deg, #3586ff, #1a73e8);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(53, 134, 255, 0.2);
+    }
+    
+    .category-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .category-description {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      justify-content: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .filters select {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      min-width: 200px;
+      background: white;
+      cursor: pointer;
+    }
+    
+    .filters select:focus {
+      border-color: #3586ff;
+      outline: none;
+    }
+    
+    .ads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .ad-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .ad-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transform: translateY(-5px);
+    }
+    
+    .ad-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .ad-card .info {
+      padding: 15px;
+    }
+    
+    .ad-card .info h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.4;
+    }
+    
+    .ad-card .info p {
+      margin: 8px 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .ad-card .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #358ae5;
+      margin: 10px 0;
+    }
+    
+    .ad-card .location {
+      color: #888;
+      font-size: 13px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 50px 20px;
+      color: #888;
+    }
+    
+    .empty-state i {
+      font-size: 48px;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+    
+    footer {
+      position: relative;
+      background: #3586ff;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 200px;
+    }
+
+    footer .wave {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url("img/wave.png");
+      background-size: 1000px 100px;
+    }
+
+    .wave#wave1 {
+      z-index: 1000;
+      opacity: 1;
+      bottom: 0;
+      animation: animateWaves 4s linear infinite;
+    }
+
+    .wave#wave2 {
+      z-index: 999;
+      opacity: 0.5;
+      bottom: 10px;
+      animation: animate 4s linear infinite !important;
+    }
+
+    .wave#wave3 {
+      z-index: 1000;
+      opacity: 0.2;
+      bottom: 15px;
+      animation: animateWaves 3s linear infinite;
+    }
+
+    .wave#wave4 {
+      z-index: 999;
+      opacity: 0.7;
+      bottom: 20px;
+      animation: animate 3s linear infinite;
+    }
+
+    @keyframes animateWaves {
+      0% {
+        background-position-x: 1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+    
+    @keyframes animate {
+      0% {
+        background-position-x: -1000px;
+      }
+      100% {
+        background-position-x: 0px;
+      }
+    }
+
+    /* ریسپانسیو */
+    @media (max-width: 768px) {
+      .filters {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filters select {
+        min-width: 100%;
+      }
+      
+      .ads-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      
+      .category-header {
+        padding: 20px 15px;
+      }
+      
+      .category-title {
+        font-size: 24px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .ads-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <!-- Top Bar -->
+    <div class="header-top">
+      <div class="header-promo">
+        <span><i class="fas fa-bolt"></i> بیش از ۱۰۰۰ آگهی جدید روزانه</span>
+        <span><i class="fas fa-shield-alt"></i> خرید امن با گارانتی بازگشت وجه</span>
+      </div>
+      <div class="user-actions">
+        <a href="#"><i class="far fa-question-circle"></i> راهنما</a>
+        <a href="#"><i class="fas fa-headset"></i> پشتیبانی</a>
+        <!-- تغییر: لینک به صفحه Login.html -->
+        <a href="Login.html"><i class="far fa-user"></i> ورود / ثبت‌نام</a>
+      </div>
+    </div>
+    
+    <!-- Main Header -->
+    <div class="header-main">
+      <!-- Logo -->
+      <!-- تغییر: لینک لوگو به صفحه Home.html -->
+      <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+        <div class="logo-container">
+          <div class="logo">DW</div>
+          <div class="logo-text">
+            <h1 class="site-title">دِوار</h1>
+            <span class="site-slogan">بازار آنلاین خرید و فروش کالا</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Search Box -->
+      <div class="search-container">
+        <div class="search-box">
+          <select class="search-category">
+            <option>همه دسته‌بندی‌ها</option>
+            <option>املاک</option>
+            <option>خودرو</option>
+            <option>موبایل</option>
+            <option>لوازم خانگی</option>
+            <option>خدمات</option>
+          </select>
+          <input type="text" class="search-input" placeholder="جستجو در میلیون‌ها آگهی...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- تغییر: لینک دکمه ثبت آگهی به صفحه ثبت آگهی -->
+        <a href="SabtAgahi.html" class="post-ad-btn">
+          <i class="fas fa-plus-circle"></i>
+          <span>ثبت آگهی رایگان</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Navigation -->
+    <!-- تغییر: همه لینک‌های منو به صفحه Dastebandi.html -->
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li><a href="Dastebandi.html"><i class="fas fa-home"></i> صفحه اصلی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-building"></i> املاک <span class="badge">جدید</span></a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-car"></i> خودرو</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-mobile-alt"></i> موبایل و تبلت</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-laptop"></i> لپ‌تاپ و کامپیوتر</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tv"></i> لوازم خانگی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-briefcase"></i> خدمات و استخدام</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-tshirt"></i> مد و پوشاک</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-dumbbell"></i> ورزش و سرگرمی</a></li>
+        <li><a href="Dastebandi.html"><i class="fas fa-ellipsis-h"></i> بیشتر</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="category-header">
+      <h1 class="category-title">آگهی‌های املاک</h1>
+      <p class="category-description">
+        <i class="fas fa-building"></i> خرید، فروش و اجاره انواع املاک شامل آپارتمان، ویلا، زمین و تجاری
+      </p>
+    </div>
+
+    <div class="filters">
+      <select id="sortFilter">
+        <option>مرتب‌سازی: جدیدترین</option>
+        <option>مرتب‌سازی: ارزان‌ترین</option>
+        <option>مرتب‌سازی: گران‌ترین</option>
+        <option>مرتب‌سازی: محبوب‌ترین</option>
+      </select>
+      <select id="cityFilter">
+        <option>شهر: همه</option>
+        <option>تهران</option>
+        <option>اصفهان</option>
+        <option>مشهد</option>
+        <option>کرج</option>
+        <option>شیراز</option>
+        <option>تبریز</option>
+      </select>
+      <select id="typeFilter">
+        <option>نوع ملک: همه</option>
+        <option>آپارتمان</option>
+        <option>ویلا</option>
+        <option>زمین</option>
+        <option>تجاری</option>
+        <option>اداری</option>
+      </select>
+      <select id="priceFilter">
+        <option>محدوده قیمت: همه</option>
+        <option>کمتر از ۱۰ میلیارد</option>
+        <option>۱۰ تا ۵۰ میلیارد</option>
+        <option>۵۰ تا ۱۰۰ میلیارد</option>
+        <option>بیشتر از ۱۰۰ میلیارد</option>
+      </select>
+    </div>
+
+    <section class="ads-grid">
+      <!-- تغییر: تمام آگهی‌ها به صفحه جزئیات لینک شده‌اند -->
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>آپارتمان ۸۵ متری شمالی در سعادت‌آباد</h3>
+          <p class="price">۴۵ میلیارد تومان</p>
+          <p>۲ خوابه، آسانسور، پارکینگ، طبقه ۴</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> تهران، سعادت‌آباد</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>ویلا ۲۵۰ متری در شمال کشور</h3>
+          <p class="price">۱۲۵ میلیارد تومان</p>
+          <p>۳ خوابه، استخر اختصاصی، محوطه ۵۰۰ متری</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> مازندران، نوشهر</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>آپارتمان ۱۲۰ متری در پاسداران</h3>
+          <p class="price">۸۵ میلیارد تومان</p>
+          <p>۳ خوابه، دوبلکس، پارکینگ اختصاصی</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> تهران، پاسداران</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>زمین ۵۰۰ متری در شهرک غرب</h3>
+          <p class="price">۳۲۰ میلیارد تومان</p>
+          <p>دارای مجوز ساخت، موقعیت تجاری عالی</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> تهران، شهرک غرب</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>مغازه ۶۰ متری در مرکز شهر</h3>
+          <p class="price">۹۵ میلیارد تومان</p>
+          <p>محل پرتردد، مناسب برای کلیه مشاغل</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> اصفهان، خیابان چهارباغ</p>
+        </div>
+      </a>
+      
+      <a href="JoziatAgahi.html" class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آپارتمان">
+        <div class="info">
+          <h3>آپارتمان ۷۰ متری نوساز</h3>
+          <p class="price">۳۸ میلیارد تومان</p>
+          <p>تک واحدی، طبقه دوم، دارای آسانسور</p>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> مشهد، بلوار وکیل‌آباد</p>
+        </div>
+      </a>
+    </section>
+  </div>
+
+  <footer>
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // فیلترها
+      const filters = ['sortFilter', 'cityFilter', 'typeFilter', 'priceFilter'];
+      filters.forEach(filterId => {
+        document.getElementById(filterId).addEventListener('change', function() {
+          const filterText = this.selectedOptions[0].text.split(': ')[1] || this.selectedOptions[0].text;
+          alert(`✅ فیلتر "${filterText}" اعمال شد.\n\nدر حال به‌روزرسانی نتایج...`);
+        });
+      });
+      
+      // افکت اسکرول برای هدر
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('.main-header');
+        if (window.scrollY > 50) {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+        } else {
+          header.style.padding = '0';
+          header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        }
+      });
+      
+      // افکت hover برای دکمه‌ها
+      const postAdBtn = document.querySelector('.post-ad-btn');
+      postAdBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      postAdBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+      
+      // شبیه‌سازی جستجو در هدر
+      const searchBtn = document.querySelector('.search-btn');
+      const searchInput = document.querySelector('.search-input');
+      const searchCategory = document.querySelector('.search-category');
+      
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim() !== '') {
+          const category = searchCategory.value;
+          alert(`🔍 جستجو برای "${searchInput.value}" در دسته "${category}"\n\nدر حال هدایت به صفحه نتایج...`);
+        } else {
+          alert('⚠️ لطفاً متن مورد نظر برای جستجو را وارد کنید.');
+        }
+      });
+      
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          if (this.value.trim() !== '') {
+            const category = searchCategory.value;
+            alert(`🔍 جستجو برای "${this.value}" در دسته "${category}"\n\nدر حال هدایت به صفحه نتایج...`);
+          }
+        }
+      });
+      
+      // نمایش تعداد آگهی‌ها
+      const adCards = document.querySelectorAll('.ad-card');
+      const categoryHeader = document.querySelector('.category-description');
+      if (categoryHeader && adCards.length > 0) {
+        categoryHeader.innerHTML += ` | <strong>${adCards.length} آگهی فعال</strong>`;
+      }
+    });
+  </script>
+</body>
+</html>

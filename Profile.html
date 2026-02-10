@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پروفایل کاربر</title>
+  <style>
+    body {
+      font-family: tahoma, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      direction: rtl;
+    }
+    header {
+      background: #358ae5;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #358ae5;
+    }
+    .profile-info {
+flex: 1;
+    }
+    .profile-info h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+    .profile-info p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 14px;
+    }
+    .ads-list {
+      margin-top: 20px;
+    }
+    .ads-list h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+    .ad-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+    .ad-card:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .ad-card img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .ad-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ad-info h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .ad-info p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    .ad-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .ad-actions button {
+      flex: 1;
+      min-width: 80px;
+      background: #358ae5;
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+    .ad-actions button:hover {
+      background: #358ae5;
+    }
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    
+footer {
+    position: relative;
+    background: #3586ff;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 200px;
+  }
+
+
+
+  footer .wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url("img/wave.png");
+    background-size: 1000px 100px;
+  }
+
+  .wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+  }
+
+  .wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+  }
+
+  .wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+  }
+
+  .wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+  }
+
+  @keyframes animateWaves {
+    0% {
+      background-position-x: 1000px;
+    }
+
+    100% {
+      background-positon-x: 0px;
+    }
+  }
+  
+@keyframes animate {
+0% {
+  background-position-x: -1000px;
+}
+100% {
+  background-positon-x: 0px;
+}
+}
+
+    /* ریسپانسیو */
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        align-items: center;
+text-align: center;
+      }
+      .ad-card {
+        flex-direction: column;
+        align-items: center;
+      }
+      .ad-card img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>پروفایل کاربر</h1>
+  </header>
+
+  <div class="container">
+    <div class="profile-header">
+      <img src="Img/Profile.png" alt="تصویر کاربر">
+      <div class="profile-info">
+        <h2>احمد</h2>
+        <p>ایمیل: ahmad@example.com</p>
+        <p>شماره تماس: 0912-1234567</p>
+      </div>
+    </div>
+
+    <div class="ads-list">
+      <h3>آگهی‌های من</h3>
+
+      <div class="ad-card">
+        <img src="Img/Mahsol/1.jpg" alt="آگهی">
+        <div class="ad-info">
+          <h4>فروش آپارتمان 80 متری</h4>
+          <p>قیمت: 2,500,000,000 تومان</p>
+          <p>تهران، سعادت‌آباد</p>
+          <div class="ad-actions">
+            <button>ویرایش</button>
+            <button>حذف</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <img src="Img/Mahsol/2.jpg" alt="آگهی">
+        <div class="ad-info">
+          <h4>پژو 206 مدل 1398</h4>
+          <p>قیمت: 450,000,000 تومان</p>
+          <p>اصفهان</p>
+          <div class="ad-actions">
+            <button>ویرایش</button>
+            <button>حذف</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+  </footer>
+</body>
+</html>
